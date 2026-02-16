@@ -33,5 +33,5 @@ def quant_agent_decision(df):
 
     return {
         "action": action,
-        "predicted_price": round(last_sma, 2)
+        "predicted_price": round(float(last_sma), 2)
     }
