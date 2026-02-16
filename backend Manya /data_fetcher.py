@@ -1,28 +1,35 @@
 import yfinance as yf
-import pandas as pd
 
 
 def fetch_stock_data(symbol):
-    df = yf.download(
-        symbol,
-        period="1y",
-        interval="1d",
-        progress=False
-    )
+    """
+    Fetch 1 year of daily stock data using yfinance.
+    """
 
-    if df.empty or len(df) < 20:
+    try:
+        df = yf.download(
+            symbol,
+            period="1y",
+            interval="1d",
+            progress=False
+        )
+
+        if df.empty:
+            return None
+
+        df.reset_index(inplace=True)
+
+        df = df.rename(columns={
+            "Open": "open",
+            "High": "high",
+            "Low": "low",
+            "Close": "close",
+            "Volume": "volume"
+        })
+
+        df = df[["Date", "open", "high", "low", "close", "volume"]]
+
+        return df
+
+    except Exception:
         return None
-
-    df.reset_index(inplace=True)
-
-    df = df.rename(columns={
-        "Open": "open",
-        "High": "high",
-        "Low": "low",
-        "Close": "close",
-        "Volume": "volume"
-    })
-
-    df = df[["Date", "open", "high", "low", "close", "volume"]]
-
-    return df
