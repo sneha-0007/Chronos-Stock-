@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chronos Stock — Trade Predictor</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <main class="container">
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">Q</div>
+        <div class="title">Quant Stock</div>
+      </div>
+      <div class="controls">
+        <label class="select-label">Choose Bank</label>
+        <select id="bankSelect" class="select">
+          <option value="hdfc">HDFC Bank</option>
+          <option value="sbi">State Bank of India</option>
+          <option value="icici">ICICI Bank</option>
+          <option value="axis">Axis Bank</option>
+          <option value="kotak">Kotak Mahindra Bank</option>
+        </select>
+        <select id="chartType" class="select">
+          <option value="candle">Candlestick</option>
+          <option value="line">Line</option>
+        </select>
+
+        <select id="indicator" class="select">
+          <option value="none">No Indicator</option>
+          <option value="sma">Moving Average (SMA)</option>
+          <option value="ema">EMA 9</option>
+          <option value="rsi">RSI</option>
+          <option value="macd">MACD</option>
+          <option value="bb">Bollinger Bands</option>
+        </select>
+      </div>
+    </header>
+
+    <section class="panel">
+      <div class="left">
+        <div class="stock-header">
+          <div>
+            <div class="ticker">Bank</div>
+            <div id="stockName" class="stock-name">HDFC BANK</div>
+          </div>
+          <div class="price-box">
+            <div id="stockPrice" class="price">₹1,234.56</div>
+            <div id="stockChange" class="change positive">+0.00%</div>
+          </div>
+        </div>
+
+        <div class="chart-wrap">
+          <div id="priceChart" style="height:420px;"></div>
+        </div>
+      </div>
+
+      <aside class="right">
+        <div class="card">
+          <h4>Prediction vs Actual</h4>
+          <div class="legend">
+            <div class="leg"><span class="dot pred"></span> Prediction</div>
+            <div class="leg"><span class="dot actual"></span> Actual</div>
+          </div>
+
+          <div class="stats">
+            <div class="stat">
+              <div class="label">Predicted Price</div>
+              <div id="predPrice" class="value">₹1,250.00</div>
+            </div>
+            <div class="stat">
+              <div class="label">Actual Price</div>
+              <div id="actPrice" class="value">₹1,234.56</div>
+            </div>
+            <div class="stat">
+              <div class="label">Confidence</div>
+              <div id="confidence" class="value">72%</div>
+            </div>
+          </div>
+
+          <div class="info">
+            <p class="muted">Values update when you switch banks or timeframes. Green percent = profit, red = loss.</p>
+          </div>
+        </div>
+
+        <div class="card small">
+          <h5>Quick Actions</h5>
+          <button id="simulate" class="action">Simulate update</button>
+          <button id="refresh" class="action outline">Refresh data</button>
+        </div>
+
+      </aside>
+    </section>
+
+    <footer class="footer muted">© 2025 — QuantStock</footer>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/lightweight-charts@4.1.1/dist/lightweight-charts.standalone.production.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
